@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline. Pipeline es la secuencia de ejecucion de middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -19,6 +19,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+//Despues del Middleware de authorization se ubican los Custom Middlewares
+//Agregando el Middleware WelcomePage
+app.UseWelcomePage();
 
 app.MapControllers();
 
