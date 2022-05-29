@@ -1,5 +1,6 @@
 using WebAPI;
 using WebAPI.Middlewares;
+using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Creacion de inyeccion de dependencias
-builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
 //builder.Services.AddScoped<IHelloWorldService>( d => new HelloWorldService());  //Inyeccion de dependencia por clase
+builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
+builder.Services.AddScoped<ICategoriasService, CategoriasService>();
+builder.Services.AddScoped<ITareasService, TareasService>();
 
 var app = builder.Build();
 

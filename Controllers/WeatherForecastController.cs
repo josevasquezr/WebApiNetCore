@@ -55,7 +55,7 @@ public class WeatherForecastController : ControllerBase
             _logger.LogDebug($"Eliminando nuevo registro con id: {id}");
             return Ok();
         }
-        catch (System.Exception ex)
+        catch (System.Exception)
         {
             string mensaje = $"No se encontro resgistro con el id: {id}";
             _logger.LogDebug(mensaje);
