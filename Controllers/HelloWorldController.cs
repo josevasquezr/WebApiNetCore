@@ -14,6 +14,7 @@ namespace WebAPI.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Get()
         {
             _logger.LogDebug("Implementacion de Loggin, consulta hello world");
