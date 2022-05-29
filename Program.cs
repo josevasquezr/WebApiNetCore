@@ -1,3 +1,5 @@
+using WebAPI.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,7 +24,10 @@ app.UseAuthorization();
 
 //Despues del Middleware de authorization se ubican los Custom Middlewares
 //Agregando el Middleware WelcomePage
-app.UseWelcomePage();
+//app.UseWelcomePage();
+
+//Creacion y ejecucion de nuevo middleware
+app.UseTimeMiddleware();
 
 app.MapControllers();
 
