@@ -36,12 +36,14 @@ public class WeatherForecastController : ControllerBase
     [Route("GetListWeatherV2")]
     public IEnumerable<WeatherForecast> Get()
     {
+        _logger.LogDebug("Mostrando lista de Weather Forecast");
         return WeatherForecasts;
     }
 
     [HttpPost]
     public IActionResult Post(WeatherForecast weatherForecast){
         WeatherForecasts.Add(weatherForecast);
+        _logger.LogDebug($"Agregando nuevo registro: {weatherForecast.Summary}");
         return Ok();
     }
 
@@ -50,11 +52,14 @@ public class WeatherForecastController : ControllerBase
         try
         {
             WeatherForecasts.RemoveAt(id);
+            _logger.LogDebug($"Eliminando nuevo registro con id: {id}");
             return Ok();
         }
         catch (System.Exception ex)
         {
-            return NotFound($"No se encontro resgistro con el id: {id}");
+            string mensaje = $"No se encontro resgistro con el id: {id}";
+            _logger.LogDebug(mensaje);
+            return NotFound(mensaje);
         }
     }
 }
