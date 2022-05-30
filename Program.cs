@@ -11,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Creando el servicio para la creacion de base de datos
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("DefaultConexionString"));
+
 //Creacion de inyeccion de dependencias
 //builder.Services.AddScoped<IHelloWorldService>( d => new HelloWorldService());  //Inyeccion de dependencia por clase
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
@@ -29,6 +32,24 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+#region AsegurandoConexionDB
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        
+        try
+        {
+            var context = services.GetRequiredService<TareasContext>();
+            context.Database.EnsureCreated();
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "Error en la creacion de la base de datos.");
+        }
+    }
+#endregion
 
 //Despues del Middleware de authorization se ubican los Custom Middlewares
 //Agregando el Middleware WelcomePage
