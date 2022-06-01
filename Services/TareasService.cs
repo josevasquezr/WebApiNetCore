@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
 namespace WebAPI.Services
@@ -13,12 +14,12 @@ namespace WebAPI.Services
 
         public IEnumerable<Tarea> Get()
         {
-            return _context.Tareas;
+            return _context.Tareas.Include(p => p.Categoria);
         }
 
         public async Task Save(Tarea tarea)
         {
-            await _context.Tareas.AddAsync(tarea);
+            _context.Add(tarea);
             await _context.SaveChangesAsync();
         }
 
@@ -47,7 +48,7 @@ namespace WebAPI.Services
 
             if (tareaActual != null)
             {
-                _context.Tareas.Remove(tareaActual);
+                _context.Remove(tareaActual);
                 await _context.SaveChangesAsync();
             }
         }

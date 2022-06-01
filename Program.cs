@@ -56,7 +56,7 @@ app.UseAuthorization();
 //app.UseWelcomePage();
 
 //Creacion y ejecucion de nuevo middleware
-app.UseTimeMiddleware();
+//app.UseTimeMiddleware();
 
 app.MapControllers();
 

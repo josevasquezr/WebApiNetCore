@@ -4,7 +4,6 @@ using WebAPI.Services;
 
 namespace WebAPI.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
     public class TareaController : ControllerBase
     {

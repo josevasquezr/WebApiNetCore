@@ -18,7 +18,7 @@ namespace WebAPI.Services
 
         public async Task Save(Categoria categoria)
         {
-            await _context.Categorias.AddAsync(categoria);
+            _context.Add(categoria);
             await _context.SaveChangesAsync();
         }
 
@@ -42,7 +42,7 @@ namespace WebAPI.Services
 
             if (categoriaActual != null)
             {
-                _context.Categorias.Remove(categoriaActual);
+                _context.Remove(categoriaActual);
                 await _context.SaveChangesAsync();
             }
         }
