@@ -20,6 +20,18 @@ namespace WebAPI.Controllers
             return Ok(tareaService.Get());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            Tarea tarea = tareaService.Get(id);
+
+            if(tarea != null){
+                return Ok(tarea);
+            }else{
+                return NotFound();
+            }
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Tarea tarea)
         {

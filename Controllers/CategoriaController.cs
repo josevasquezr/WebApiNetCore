@@ -20,6 +20,19 @@ namespace WebAPI.Controllers
             return Ok(categoriasService.Get());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            Categoria categoria = categoriasService.Get(id); 
+            
+            if (categoria != null)
+            {
+                return Ok(categoria);
+            }else{
+                return NotFound();
+            }
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Categoria categoria)
         {

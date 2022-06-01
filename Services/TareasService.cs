@@ -17,6 +17,13 @@ namespace WebAPI.Services
             return _context.Tareas.Include(p => p.Categoria);
         }
 
+        public Tarea Get(Guid id)
+        {
+            Tarea tarea = _context.Tareas.Include(p => p.Categoria).FirstOrDefault(p => p.TareaId == id);
+
+            return tarea;
+        }
+
         public async Task Save(Tarea tarea)
         {
             _context.Add(tarea);
@@ -57,6 +64,7 @@ namespace WebAPI.Services
     public interface ITareasService
     {
         IEnumerable<Tarea> Get();
+        Tarea Get(Guid id);
         Task Save(Tarea tarea);
         Task Update(Guid id, Tarea tarea);
         Task Delete(Guid id);

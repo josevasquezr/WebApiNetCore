@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using System.Linq;
 
 namespace WebAPI.Services
 {
@@ -11,9 +12,16 @@ namespace WebAPI.Services
             _context = context;
         }
 
-        public IEnumerable<Categoria> Get()
+        public List<Categoria> Get()
         {
-            return _context.Categorias;
+            return _context.Categorias.ToList();
+        }
+
+        public Categoria Get(Guid id)
+        {
+            Categoria categoria = _context.Categorias.Find(id);
+            
+            return categoria;
         }
 
         public async Task Save(Categoria categoria)
@@ -50,7 +58,8 @@ namespace WebAPI.Services
 
     public interface ICategoriasService
     {
-        IEnumerable<Categoria> Get();
+        List<Categoria> Get();
+        Categoria Get(Guid id);
         Task Save(Categoria categoria);
         Task Update(Guid id, Categoria categoria);
         Task Delete(Guid id);
