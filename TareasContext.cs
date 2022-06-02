@@ -7,6 +7,7 @@ namespace WebAPI
     {
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Tarea> Tareas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public TareasContext(DbContextOptions<TareasContext> options) : base(options) { }
 

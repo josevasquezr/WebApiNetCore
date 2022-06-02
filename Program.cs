@@ -14,11 +14,17 @@ builder.Services.AddSwaggerGen();
 // Creando el servicio para la creacion de base de datos
 builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("DefaultConexionString"));
 
+//Configurando serializacion, para eliminar consultas ciclicas
+builder.Services.AddMvc().AddNewtonsoftJson(
+    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 //Creacion de inyeccion de dependencias
 //builder.Services.AddScoped<IHelloWorldService>( d => new HelloWorldService());  //Inyeccion de dependencia por clase
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
 builder.Services.AddScoped<ICategoriasService, CategoriasService>();
 builder.Services.AddScoped<ITareasService, TareasService>();
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 
 var app = builder.Build();
 

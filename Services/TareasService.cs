@@ -14,7 +14,9 @@ namespace WebAPI.Services
 
         public IEnumerable<Tarea> Get()
         {
-            return _context.Tareas.Include(p => p.Categoria);
+            return _context.Tareas
+                    .Include(p => p.Categoria)
+                    .Include(p => p.Usuario);
         }
 
         public Tarea Get(Guid id)

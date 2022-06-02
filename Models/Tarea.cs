@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+//using System.ComponentModel.DataAnnotations;
+//using System.ComponentModel.DataAnnotations.Schema;
+//using System.Text.Json.Serialization;
 
 namespace WebAPI.Models
 {
@@ -26,7 +26,7 @@ namespace WebAPI.Models
         
         //[NotMapped]
         public string Resumen {
-            get{ return $"{Titulo} Prioridad: {PrioridadTarea}";}
+            get{ return $"{Titulo} [Prioridad: {PrioridadTarea}]";}
         }
 
     }

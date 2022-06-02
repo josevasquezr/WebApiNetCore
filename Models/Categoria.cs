@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+//using System.ComponentModel.DataAnnotations;
+//using System.Text.Json.Serialization;
 
 namespace WebAPI.Models
 {
@@ -14,7 +14,7 @@ namespace WebAPI.Models
         public string Descripcion { get; set; }
         public int Peso { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual ICollection<Tarea> Tareas { get; set; }
     }
 }
