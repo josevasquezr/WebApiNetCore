@@ -21,7 +21,6 @@ builder.Services.AddMvc().AddNewtonsoftJson(
 
 //Creacion de inyeccion de dependencias
 //builder.Services.AddScoped<IHelloWorldService>( d => new HelloWorldService());  //Inyeccion de dependencia por clase
-builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
 builder.Services.AddScoped<ICategoriasService, CategoriasService>();
 builder.Services.AddScoped<ITareasService, TareasService>();
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
