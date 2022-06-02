@@ -24,6 +24,15 @@ namespace WebAPI.Services
             return tarea;
         }
 
+        public List<Tarea> GetPorCategoria(Guid id)
+        {
+            IEnumerable<Tarea> tareasPorCategorias = from tarea in _context.Tareas
+                                                    where tarea.CategoriaId == id
+                                                    select tarea;
+
+            return tareasPorCategorias.ToList(); 
+        }
+
         public async Task Save(Tarea tarea)
         {
             _context.Add(tarea);
@@ -65,6 +74,7 @@ namespace WebAPI.Services
     {
         IEnumerable<Tarea> Get();
         Tarea Get(Guid id);
+        List<Tarea> GetPorCategoria(Guid id);
         Task Save(Tarea tarea);
         Task Update(Guid id, Tarea tarea);
         Task Delete(Guid id);

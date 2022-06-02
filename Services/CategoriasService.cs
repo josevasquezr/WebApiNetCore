@@ -24,6 +24,15 @@ namespace WebAPI.Services
             return categoria;
         }
 
+        public List<String> GetAllNames()
+        {
+            IEnumerable<String> nombres = (from categoria in _context.Categorias
+                                            select categoria.Nombre)
+                                            .Distinct();
+
+            return nombres.ToList(); 
+        }
+
         public async Task Save(Categoria categoria)
         {
             _context.Add(categoria);
@@ -60,6 +69,7 @@ namespace WebAPI.Services
     {
         List<Categoria> Get();
         Categoria Get(Guid id);
+        List<String> GetAllNames();
         Task Save(Categoria categoria);
         Task Update(Guid id, Categoria categoria);
         Task Delete(Guid id);

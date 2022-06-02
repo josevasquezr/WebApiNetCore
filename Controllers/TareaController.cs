@@ -32,6 +32,15 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("PorCategoria/{id}")]
+        public IActionResult GetPorCategoria(Guid id)
+        {
+            List<Tarea> tareasPorCategoria = tareaService.GetPorCategoria(id);
+
+            return Ok(tareasPorCategoria);
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Tarea tarea)
         {

@@ -33,6 +33,13 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllNames")]
+        public IActionResult GetAllNames()
+        {
+            return Ok(categoriasService.GetAllNames());
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Categoria categoria)
         {
