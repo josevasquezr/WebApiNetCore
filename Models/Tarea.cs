@@ -11,6 +11,7 @@ namespace WebAPI.Models
 
         //[ForeignKey("CategoriaId")]
         public Guid CategoriaId { get; set; }
+        public Guid UsuarioId { get; set; }
 
         //[Required]
         //[MaxLength(200)]
@@ -20,11 +21,13 @@ namespace WebAPI.Models
         public DateTime FechaCreacion { get; set; }
         public bool Recordatorio { get; set; }
         public DateTime? FechaHoraRecordatorio { get; set; }
-
         public virtual Categoria Categoria { get; set; }
+        public virtual Usuario Usuario { get; set; }
         
         //[NotMapped]
-        public string Resumen { get; set; }
+        public string Resumen {
+            get{ return $"{Titulo} Prioridad: {PrioridadTarea}";}
+        }
 
     }
 

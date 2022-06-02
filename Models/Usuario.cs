@@ -9,5 +9,10 @@ namespace WebAPI.Models
         public string correo { get; set; }
         public string contrasenia { get; set; }
         public bool Notificaciones { get; set; }
+        public virtual ICollection<Tarea> Tareas { get; set; }
+        public string NombreCompleto 
+        { 
+            get { return $"{Nombres} {Apellidos}"; }
+        }
     }
 }

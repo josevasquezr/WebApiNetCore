@@ -19,7 +19,10 @@ namespace WebAPI.Services
 
         public Tarea Get(Guid id)
         {
-            Tarea tarea = _context.Tareas.Include(p => p.Categoria).FirstOrDefault(p => p.TareaId == id);
+            Tarea tarea = _context.Tareas
+                            .Include(p => p.Categoria)
+                            .Include(p => p.Usuario)
+                            .FirstOrDefault(p => p.TareaId == id);
 
             return tarea;
         }
@@ -46,13 +49,13 @@ namespace WebAPI.Services
             if (tareaActual != null)
             {
                 tareaActual.CategoriaId = tarea.CategoriaId;
+                tareaActual.UsuarioId = tarea.UsuarioId;
                 tareaActual.Titulo = tarea.Titulo;
                 tareaActual.Descripcion = tarea.Descripcion;
                 tareaActual.FechaCreacion = tarea.FechaCreacion;
                 tareaActual.FechaHoraRecordatorio = tarea.FechaHoraRecordatorio;
                 tareaActual.PrioridadTarea = tarea.PrioridadTarea;
                 tareaActual.Recordatorio = tarea.Recordatorio;
-                tareaActual.Resumen = tarea.Resumen;
 
                 await _context.SaveChangesAsync();
             }
