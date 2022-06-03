@@ -20,6 +20,26 @@ namespace WebAPI.Controllers
             return Ok(_usuariosService.Get());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            Usuario usuario = _usuariosService.Get(id);
+
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }else{
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        [Route("GetUsuariosConNotificacion")]
+        public IActionResult GetUsuariosConNotificacion()
+        {
+            return Ok(_usuariosService.GetUsuariosConNotificacion());
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Usuario usuario)
         {
