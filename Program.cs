@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Creando el servicio para la creacion de base de datos
-builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("DefaultConexionString"));
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("AzureConexionString"));
 
 //Configurando serializacion, para eliminar consultas ciclicas
 builder.Services.AddMvc().AddNewtonsoftJson(
