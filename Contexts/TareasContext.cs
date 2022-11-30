@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
-namespace WebAPI
+namespace WebAPI.Contexts
 {
     public class TareasContext : DbContext
     {
@@ -13,11 +13,12 @@ namespace WebAPI
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<Categoria> categorias = this.getCategorias();
-            List<Tarea> tareas = this.getTareas();
-            List<Usuario> usuarios = this.getUsuarios();
+            List<Categoria> categorias = getCategorias();
+            List<Tarea> tareas = getTareas();
+            List<Usuario> usuarios = getUsuarios();
 
-            modelBuilder.Entity<Usuario>(usuario => {
+            modelBuilder.Entity<Usuario>(usuario =>
+            {
                 usuario.ToTable("Usuario");
                 usuario.HasKey(p => p.UsuarioId);
                 usuario.Property(p => p.Nombres).IsRequired().HasMaxLength(200);
