@@ -25,6 +25,13 @@ namespace WebAPI.Services
             return categoria;
         }
 
+        Categoria ICategoriasService.Get(Guid id, int peso)
+        {
+            Categoria categoria = _context.Categorias.Where(c => c.CategoriaId == id && c.Peso == peso).FirstOrDefault();
+
+            return categoria;
+        }
+
         public List<String> GetAllNames()
         {
             IEnumerable<String> nombres = (from categoria in _context.Categorias
@@ -70,6 +77,7 @@ namespace WebAPI.Services
     {
         List<Categoria> Get();
         Categoria Get(Guid id);
+        Categoria Get(Guid id, int peso);
         List<String> GetAllNames();
         Task Save(Categoria categoria);
         Task Update(Guid id, Categoria categoria);

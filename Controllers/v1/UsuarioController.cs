@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using WebAPI.Services;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class UsuarioController : ControllerBase
     {
         private IUsuariosService _usuariosService;
@@ -14,12 +16,14 @@ namespace WebAPI.Controllers
             _usuariosService = service;
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_usuariosService.Get());
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -33,6 +37,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet]
         [Route("GetUsuariosConNotificacion")]
         public IActionResult GetUsuariosConNotificacion()
@@ -40,6 +45,7 @@ namespace WebAPI.Controllers
             return Ok(_usuariosService.GetUsuariosConNotificacion());
         }
 
+        [MapToApiVersion("1.0")]
         [HttpPost]
         public IActionResult Post([FromBody] Usuario usuario)
         {
@@ -47,6 +53,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
+        [MapToApiVersion("1.0")]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody] Usuario usuario)
         {
@@ -54,6 +61,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
+        [MapToApiVersion("1.0")]
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

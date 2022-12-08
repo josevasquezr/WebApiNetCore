@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using WebAPI.Services;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class TareaController : ControllerBase
     {
         ITareasService tareaService;
@@ -14,12 +16,14 @@ namespace WebAPI.Controllers
             tareaService = service;
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(tareaService.Get());
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -32,6 +36,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet]
         [Route("PorCategoria/{id}")]
         public IActionResult GetPorCategoria(Guid id)
@@ -41,6 +46,7 @@ namespace WebAPI.Controllers
             return Ok(tareasPorCategoria);
         }
 
+        [MapToApiVersion("1.0")]
         [HttpPost]
         public IActionResult Post([FromBody] Tarea tarea)
         {
@@ -48,6 +54,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
+        [MapToApiVersion("1.0")]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody] Tarea tarea)
         {
@@ -55,6 +62,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
+        [MapToApiVersion("1.0")]
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
