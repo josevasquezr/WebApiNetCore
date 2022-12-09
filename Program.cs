@@ -9,10 +9,7 @@ using WebAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddApiVersioning(opt =>
@@ -36,8 +33,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 // Creando el servicio para la creacion de base de datos
-//builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("DefaultConexionString"));
-builder.Services.AddSqlite<TareasContext>(builder.Configuration.GetConnectionString("ConexionStringLite"));
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("DefaultConexionString"));
 
 //Configurando serializacion, para eliminar consultas ciclicas
 builder.Services.AddMvc().AddNewtonsoftJson(
